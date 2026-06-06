@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 42 36% 97%;
+  --surface: 40 24% 99%;
+  --ink: 222 38% 11%;
+  --muted: 222 14% 40%;
+  --accent: 222 44% 16%;
+  --accent-2: 38 54% 48%;
+  --ring: 38 54% 48%;
+  --font-sans: "Commissioner", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+
+  color-scheme: light;
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(900px 520px at 18% 12%, hsl(var(--accent-2) / 0.14), transparent 62%),
+    radial-gradient(850px 460px at 86% 18%, hsl(var(--accent) / 0.10), transparent 65%),
+    linear-gradient(180deg, hsl(var(--bg)), hsl(42 30% 94%));
+  color: hsl(var(--ink));
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+::selection {
+  background: hsl(var(--accent-2) / 0.26);
+}

@@ -21,7 +21,7 @@ vi.mock("next/image", () => ({
 }));
 
 describe("PopularServicesSection", () => {
-  it("renders the compact intro copy, four service links, and treatment-specific thumbnails", () => {
+  it("renders the compact intro copy, four service links, and luxury portrait thumbnails", () => {
     render(<PopularServicesSection />);
 
     expect(screen.getByText("Popular Services")).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe("PopularServicesSection", () => {
       screen.getByRole("link", { name: /Acne Treatment Texture Explore/i }),
     ).toHaveAttribute("href", "/services/acne-treatment-kuala-lumpur");
     expect(
-      screen.getByAltText("Skin close-up visual for acne treatment and clearer texture"),
+      screen.getByAltText("Luxury beauty portrait with clearer skin for acne treatment"),
     ).toBeInTheDocument();
 
     expect(screen.getByRole("link", { name: /HIFU Lift Explore/i })).toHaveAttribute(
@@ -41,7 +41,7 @@ describe("PopularServicesSection", () => {
       "/services/hifu-kuala-lumpur",
     );
     expect(
-      screen.getByAltText("Jawline contour close-up visual for HIFU lifting treatment"),
+      screen.getByAltText("Luxury contour portrait highlighting a lifted jawline for HIFU"),
     ).toBeInTheDocument();
 
     expect(
@@ -49,7 +49,7 @@ describe("PopularServicesSection", () => {
     ).toHaveAttribute("href", "/services/rf-microneedling-kuala-lumpur");
     expect(
       screen.getByAltText(
-        "Refined pore and skin-texture close-up visual for RF microneedling treatment",
+        "Luxury skin-detail portrait showing refined texture for RF microneedling",
       ),
     ).toBeInTheDocument();
 
@@ -58,7 +58,7 @@ describe("PopularServicesSection", () => {
       "/services/facial-kuchai-lama",
     );
     expect(
-      screen.getByAltText("Hydrated glow skin close-up visual for facial treatment"),
+      screen.getByAltText("Luxury glowing skin portrait for facial treatment"),
     ).toBeInTheDocument();
   });
 });

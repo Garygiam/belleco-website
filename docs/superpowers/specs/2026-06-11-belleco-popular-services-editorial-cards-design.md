@@ -116,17 +116,25 @@ It should not feel:
 Images should feel visually consistent across all four cards:
 
 - skincare related
-- treatment-specific skin close-up imagery
+- treatment-specific luxury beauty portrait imagery
 - soft premium lighting
 - realistic, not abstract
 - aligned with Belléco’s dark, elegant homepage palette
 
-The visual direction for each card should feel more directly related to the treatment:
+The visual direction should lean `beauty-premium`, not clinical:
 
-- `Acne Treatment`: clearer skin texture or blemish-control close-up
-- `HIFU`: jawline, contour, or lift-focused skin close-up
-- `RF Microneedling`: refined pores or texture-improvement close-up
-- `Facial`: hydrated glow or luminous skin close-up
+- polished close-up beauty portraits
+- elegant skin detail
+- premium lighting
+- luxury skincare campaign tone
+- no device-heavy or treatment-room-heavy imagery
+
+The visual direction for each card should still feel directly related to the treatment:
+
+- `Acne Treatment`: clearer skin close-up with smooth complexion and refined texture
+- `HIFU`: lifted jawline or contour-focused beauty portrait
+- `RF Microneedling`: refined texture close-up with premium skin-detail portrait treatment
+- `Facial`: luminous hydrated skin portrait with soft glow
 
 ## Interaction
 
@@ -153,6 +161,7 @@ Expand the homepage `popularServices` data so each service can include the visua
 - short descriptor
 - optional alt text
 - prompt language that is more treatment-specific than generic beauty editorial imagery
+- prompt language that stays beauty-premium and portrait-led rather than clinical
 
 ### Rendering
 
@@ -183,6 +192,7 @@ Behavioral testing can stay light because this is mostly a presentational redesi
 - [ ] Tablet collapses to `2 x 2`
 - [ ] Mobile keeps the cards readable in a stacked layout
 - [ ] The thumbnail imagery feels directly related to each treatment
+- [ ] The thumbnail imagery feels beauty-premium and portrait-led
 - [ ] The layout feels premium and visually aligned with the Belléco homepage
 - [ ] Mobile and desktop layouts both keep the cards readable and attractive
 - [ ] Hover and focus states clearly communicate interactivity

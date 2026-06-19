@@ -27,14 +27,21 @@ vi.mock("next/image", () => ({
 }));
 
 describe("SiteFooter", () => {
-  it("renders clear contact actions in the footer", () => {
+  it("keeps map actions in contact and social links in the social section", () => {
     render(<SiteFooter locale="en" dictionary={dictionaries.en} />);
 
     const contactBlock = screen.getByText(uiCopy.en.footer.contact).parentElement;
+    const socialBlock = screen.getByText(uiCopy.en.footer.social).parentElement;
 
     expect(contactBlock).not.toBeNull();
+    expect(socialBlock).not.toBeNull();
+
     expect(within(contactBlock!).getByLabelText(uiCopy.en.footer.openInWaze)).toBeInTheDocument();
     expect(within(contactBlock!).getByLabelText(uiCopy.en.footer.openInMaps)).toBeInTheDocument();
-    expect(within(contactBlock!).getByRole("link", { name: /instagram/i })).toBeInTheDocument();
+    expect(within(contactBlock!).queryByRole("link", { name: /instagram/i })).not.toBeInTheDocument();
+
+    expect(within(socialBlock!).getByRole("link", { name: /instagram/i })).toBeInTheDocument();
+    expect(within(socialBlock!).getByRole("link", { name: /facebook/i })).toBeInTheDocument();
+    expect(within(socialBlock!).getByRole("link", { name: /youtube/i })).toBeInTheDocument();
   });
 });

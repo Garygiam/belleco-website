@@ -114,21 +114,21 @@ export function SiteFooter({ locale }: Props) {
               </svg>
               <span>Maps</span>
             </a>
-            <a
-              href={brand.links.instagram}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-10 items-center rounded-full border border-border bg-surface px-4 text-sm font-semibold text-ink transition hover:bg-page"
-            >
-              Instagram
-            </a>
           </div>
         </div>
-        <div className="space-y-3">
+        <div className="space-y-4 rounded-[1.75rem] border border-border bg-page p-5 md:rounded-none md:border-0 md:bg-transparent md:p-0">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
             {copy.social}
           </p>
           <div className="flex flex-wrap gap-3 text-sm font-semibold text-ink">
+            <a
+              href={brand.links.instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-border bg-page px-4 py-2 transition hover:bg-surface"
+            >
+              Instagram
+            </a>
             <a
               href={brand.links.facebook}
               target="_blank"

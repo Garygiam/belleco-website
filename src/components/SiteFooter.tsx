@@ -12,7 +12,7 @@ export function SiteFooter({ locale }: Props) {
   const copy = uiCopy[locale].footer;
   return (
     <footer className="mt-auto border-t border-border bg-surface">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-14 md:grid-cols-3 md:px-8">
+      <div className="mx-auto grid w-full max-w-6xl gap-8 px-5 py-12 md:grid-cols-3 md:px-8">
         <div className="space-y-3">
           <div className="inline-flex items-center">
             <span className="sr-only">{brand.name}</span>
@@ -35,7 +35,7 @@ export function SiteFooter({ locale }: Props) {
           </div>
           <p className="text-sm leading-7 text-muted">{brand.subTagline}</p>
         </div>
-        <div className="space-y-3">
+        <div className="space-y-4 rounded-[1.75rem] border border-border bg-page p-5 md:rounded-none md:border-0 md:bg-transparent md:p-0">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
             {copy.contact}
           </p>
@@ -48,17 +48,17 @@ export function SiteFooter({ locale }: Props) {
               <p key={line}>{line}</p>
             ))}
           </div>
-          <div className="flex items-center gap-3 pt-2">
+          <div className="flex flex-wrap items-center gap-3 pt-3">
             <a
               href={brand.links.waze}
               target="_blank"
               rel="noreferrer"
               aria-label={copy.openInWaze}
-              className="grid h-10 w-10 place-items-center rounded-full border border-border bg-page text-ink transition hover:bg-surface"
+              className="inline-flex h-10 items-center gap-2 rounded-full border border-border bg-surface px-4 text-sm font-semibold text-ink transition hover:bg-page"
             >
               <svg
-                width="18"
-                height="18"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -83,17 +83,18 @@ export function SiteFooter({ locale }: Props) {
                   strokeLinecap="round"
                 />
               </svg>
+              <span>Waze</span>
             </a>
             <a
               href={brand.links.maps}
               target="_blank"
               rel="noreferrer"
               aria-label={copy.openInMaps}
-              className="grid h-10 w-10 place-items-center rounded-full border border-border bg-page text-ink transition hover:bg-surface"
+              className="inline-flex h-10 items-center gap-2 rounded-full border border-border bg-surface px-4 text-sm font-semibold text-ink transition hover:bg-page"
             >
               <svg
-                width="18"
-                height="18"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -111,6 +112,15 @@ export function SiteFooter({ locale }: Props) {
                   strokeWidth="1.8"
                 />
               </svg>
+              <span>Maps</span>
+            </a>
+            <a
+              href={brand.links.instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-10 items-center rounded-full border border-border bg-surface px-4 text-sm font-semibold text-ink transition hover:bg-page"
+            >
+              Instagram
             </a>
           </div>
         </div>
@@ -119,14 +129,6 @@ export function SiteFooter({ locale }: Props) {
             {copy.social}
           </p>
           <div className="flex flex-wrap gap-3 text-sm font-semibold text-ink">
-            <a
-              href={brand.links.instagram}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full border border-border bg-page px-4 py-2 transition hover:bg-surface"
-            >
-              Instagram
-            </a>
             <a
               href={brand.links.facebook}
               target="_blank"

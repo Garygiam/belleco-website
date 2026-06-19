@@ -271,3 +271,9 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
 }
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 6.5rem);
+  }
+}

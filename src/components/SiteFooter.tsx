@@ -11,9 +11,9 @@ type Props = {
 export function SiteFooter({ locale }: Props) {
   const copy = uiCopy[locale].footer;
   return (
-    <footer className="mt-auto border-t border-border bg-surface">
+    <footer className="mt-auto w-full overflow-x-clip border-t border-border bg-surface">
       <div className="mx-auto grid w-full max-w-6xl gap-8 px-5 py-12 md:grid-cols-3 md:px-8">
-        <div className="space-y-3">
+        <div className="space-y-3 md:pr-4">
           <div className="inline-flex items-center">
             <span className="sr-only">{brand.name}</span>
             <span className="relative inline-block h-10 w-[220px]">

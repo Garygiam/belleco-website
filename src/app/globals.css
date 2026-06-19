@@ -135,6 +135,15 @@
   opacity: 1;
 }
 
+.video-dark-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.08) 0%,
+    rgba(0, 0, 0, 0.2) 38%,
+    rgba(0, 0, 0, 0.56) 100%
+  );
+}
+
 .book-button-pulse {
   position: relative;
   overflow: hidden;

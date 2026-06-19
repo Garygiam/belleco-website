@@ -5,6 +5,16 @@ import { ClientVideosSection } from "@/components/ClientVideosSection";
 import { dictionaries } from "@/lib/i18n";
 
 describe("ClientVideosSection", () => {
+  it("uses a dark overlay treatment for video surfaces", () => {
+    const { container } = render(
+      <ClientVideosSection locale="en" dictionary={dictionaries.en} />,
+    );
+
+    const overlays = container.querySelectorAll(".video-dark-overlay");
+
+    expect(overlays.length).toBeGreaterThan(0);
+  });
+
   it("renders thumbnails, switches videos, and toggles player mode", async () => {
     const user = userEvent.setup();
     render(<ClientVideosSection locale="en" dictionary={dictionaries.en} />);

@@ -100,7 +100,7 @@ export function ClientVideosSection(props: Props) {
                         className="absolute inset-0 h-full w-full"
                       />
                       <div
-                        className="absolute inset-0 bg-gradient-to-t from-page/85 via-page/20 to-transparent"
+                        className="video-dark-overlay pointer-events-none absolute inset-0 rounded-[2rem]"
                         aria-hidden
                       />
                       <div className="absolute bottom-0 left-0 right-0 space-y-3 px-7 pb-7">
@@ -162,7 +162,7 @@ export function ClientVideosSection(props: Props) {
                       />
                       <div
                         className={cx(
-                          "absolute inset-0 bg-gradient-to-t from-page/70 via-page/10 to-transparent transition",
+                          "video-dark-overlay absolute inset-0 rounded-[1.5rem] transition-opacity",
                           selectedThumb ? "opacity-100" : "opacity-70 group-hover:opacity-95",
                         )}
                         aria-hidden

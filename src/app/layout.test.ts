@@ -79,4 +79,29 @@ describe("root layout metadata", () => {
       ),
     ).toBe(true);
   });
+
+  it("loads Meta Pixel globally from the root layout", async () => {
+    headersMock.mockResolvedValue(
+      new Headers([["x-belleco-locale", "en"]]),
+    );
+
+    const { default: RootLayout } = await import("@/app/layout");
+    const element = await RootLayout({
+      children: "child",
+    });
+
+    const bodyChildren = Array.isArray(element.props.children.props.children)
+      ? element.props.children.props.children
+      : [element.props.children.props.children];
+
+    expect(
+      bodyChildren.some(
+        (child: unknown) =>
+          typeof child === "object" &&
+          child !== null &&
+          "props" in child &&
+          JSON.stringify((child as { props?: unknown }).props).includes("892839550540707"),
+      ),
+    ).toBe(true);
+  });
 });

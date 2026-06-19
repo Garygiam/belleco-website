@@ -15,6 +15,9 @@ type Props = {
 
 export function SiteHeader({ locale, dictionary }: Props) {
   const pathname = usePathname() ?? `/${locale}`;
+  const treatmentsHref = `/${locale}#treatments`;
+  const resultsHref = `/${locale}#before-after-results`;
+  const bookHref = `/${locale}/book`;
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-nav/80 backdrop-blur-xl">
@@ -41,19 +44,19 @@ export function SiteHeader({ locale, dictionary }: Props) {
           </span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-muted md:flex">
-          <a href="#treatments" className="transition hover:text-ink">
+          <Link href={treatmentsHref} className="transition hover:text-ink">
             {dictionary.header.nav.treatments}
-          </a>
-          <a href="#results" className="transition hover:text-ink">
+          </Link>
+          <Link href={resultsHref} className="transition hover:text-ink">
             {dictionary.header.nav.results}
-          </a>
-          <Link href={`/${locale}/book`} className="transition hover:text-ink">
+          </Link>
+          <Link href={bookHref} className="transition hover:text-ink">
             {dictionary.header.nav.book}
           </Link>
         </nav>
         <div className="flex items-center gap-3">
           <Link
-            href={`/${locale}/book`}
+            href={bookHref}
             className="book-button-pulse hidden h-10 items-center rounded-full bg-accent px-5 text-sm font-semibold text-accent-ink shadow-lift transition hover:bg-accent-hover md:inline-flex"
           >
             <span className="book-button-pulse__label">{dictionary.header.cta}</span>

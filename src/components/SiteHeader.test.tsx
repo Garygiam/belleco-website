@@ -54,4 +54,21 @@ describe("SiteHeader", () => {
     expect(cta).toHaveAttribute("href", "/zh/book");
     expect(cta).toHaveClass("book-button-pulse");
   });
+
+  it("uses homepage-qualified links for treatments and results", () => {
+    render(<SiteHeader locale="en" dictionary={dictionaries.en} />);
+
+    expect(screen.getByRole("link", { name: dictionaries.en.header.nav.treatments })).toHaveAttribute(
+      "href",
+      "/en#treatments",
+    );
+    expect(screen.getByRole("link", { name: dictionaries.en.header.nav.results })).toHaveAttribute(
+      "href",
+      "/en#before-after-results",
+    );
+    expect(screen.getByRole("link", { name: dictionaries.en.header.nav.book })).toHaveAttribute(
+      "href",
+      "/en/book",
+    );
+  });
 });

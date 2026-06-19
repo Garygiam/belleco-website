@@ -43,4 +43,15 @@ describe("SiteHeader", () => {
     expect(screen.getByRole("link", { name: "BM" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /toggle theme/i })).toBeInTheDocument();
   });
+
+  it("renders the animated booking CTA with the localized route", () => {
+    render(<SiteHeader locale="zh" dictionary={dictionaries.zh} />);
+
+    const cta = screen.getByRole("link", {
+      name: dictionaries.zh.header.cta,
+    });
+
+    expect(cta).toHaveAttribute("href", "/zh/book");
+    expect(cta).toHaveClass("book-button-pulse");
+  });
 });

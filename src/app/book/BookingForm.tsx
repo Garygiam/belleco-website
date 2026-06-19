@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import {
-  buildMailtoHref,
+  buildCallHref,
   buildWhatsAppHref,
   createEmptyBookingDraft,
   formatBookingMessage,
@@ -49,10 +49,7 @@ export function BookingForm({ locale, dictionary }: Props) {
 
   const message = useMemo(() => formatBookingMessage(draft, copy.message), [copy.message, draft]);
   const whatsappHref = useMemo(() => buildWhatsAppHref(message), [message]);
-  const mailtoHref = useMemo(
-    () => buildMailtoHref(copy.message.mailSubject, message),
-    [copy.message.mailSubject, message],
-  );
+  const callHref = useMemo(() => buildCallHref(), []);
 
   function setField<K extends keyof BookingDraft>(key: K, value: BookingDraft[K]) {
     setDraft((prev) => ({ ...prev, [key]: value }));
@@ -107,18 +104,6 @@ export function BookingForm({ locale, dictionary }: Props) {
 
           <label className="grid gap-2 md:col-span-2">
             <span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
-              {copy.emailOptional}
-            </span>
-            <input
-              value={draft.email}
-              onChange={(e) => setField("email", e.target.value)}
-              inputMode="email"
-              className="h-12 rounded-2xl border border-border bg-page px-4 text-sm text-ink outline-none focus:ring-2 focus:ring-ring"
-            />
-          </label>
-
-          <label className="grid gap-2 md:col-span-2">
-            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
               {copy.concern}
             </span>
             <input
@@ -159,7 +144,7 @@ export function BookingForm({ locale, dictionary }: Props) {
             {copy.preferredContact}
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
-            {(["WhatsApp", "Call", "Email"] as const).map((method) => (
+            {(["WhatsApp", "Call"] as const).map((method) => (
               <button
                 key={method}
                 type="button"
@@ -247,14 +232,14 @@ export function BookingForm({ locale, dictionary }: Props) {
             {copy.openWhatsapp}
           </a>
           <a
-            href={submitted ? mailtoHref : undefined}
+            href={submitted ? callHref : undefined}
             aria-disabled={!submitted}
             className={cx(
               "inline-flex h-12 items-center justify-center rounded-full border border-border bg-surface px-8 text-sm font-semibold text-ink shadow-sm transition hover:bg-page",
               !submitted && "pointer-events-none opacity-60",
             )}
           >
-            {copy.emailButton}
+            {copy.callButton}
           </a>
         </div>
 

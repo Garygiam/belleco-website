@@ -3,8 +3,7 @@ import { brand } from "@/config/brand";
 export type BookingDraft = {
   fullName: string;
   phone: string;
-  email: string;
-  preferredContact: "WhatsApp" | "Call" | "Email";
+  preferredContact: "WhatsApp" | "Call";
   concern: string;
   preferredDate: string;
   preferredTime: string;
@@ -16,20 +15,17 @@ export type BookingMessageCopy = {
   greeting: string;
   name: string;
   phone: string;
-  email: string;
   concern: string;
   preferredDate: string;
   preferredTime: string;
   preferredContact: string;
   notes: string;
-  mailSubject: string;
 };
 
 export function createEmptyBookingDraft(): BookingDraft {
   return {
     fullName: "",
     phone: "",
-    email: "",
     preferredContact: "WhatsApp",
     concern: "",
     preferredDate: "",
@@ -45,7 +41,6 @@ export function formatBookingMessage(draft: BookingDraft, copy: BookingMessageCo
     "",
     `${copy.name}: ${draft.fullName || "-"}`,
     `${copy.phone}: ${draft.phone || "-"}`,
-    `${copy.email}: ${draft.email || "-"}`,
     `${copy.concern}: ${draft.concern || "-"}`,
     `${copy.preferredDate}: ${draft.preferredDate || "-"}`,
     `${copy.preferredTime}: ${draft.preferredTime || "-"}`,
@@ -63,8 +58,6 @@ export function buildWhatsAppHref(message: string) {
   return `https://wa.me/${phone}?text=${encoded}`;
 }
 
-export function buildMailtoHref(subject: string, body: string) {
-  const encodedSubject = encodeURIComponent(subject);
-  const encodedBody = encodeURIComponent(body);
-  return `mailto:${brand.contact.email}?subject=${encodedSubject}&body=${encodedBody}`;
+export function buildCallHref() {
+  return `tel:${brand.contact.phoneE164}`;
 }

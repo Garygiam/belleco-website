@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { Dictionary, Locale } from "@/lib/i18n";
+import { uiCopy } from "@/lib/i18n/ui-copy";
 
 type Category = "acne" | "antiAging" | "radiance";
 
@@ -10,9 +11,8 @@ type Treatment = {
   title: string;
   category: Category;
   description: string;
-  outcomes: string[];
+  outcomes: readonly string[];
 };
-import { uiCopy } from "@/lib/i18n/ui-copy";
 
 function cx(...values: Array<string | undefined | false>) {
   return values.filter(Boolean).join(" ");
@@ -31,7 +31,7 @@ export function TreatmentsSection({ locale, dictionary }: Props) {
     { key: "antiAging", label: copy.categories.antiAging },
     { key: "radiance", label: copy.categories.radiance },
   ] as const;
-  const treatments = copy.items as readonly Treatment[];
+  const treatments: readonly Treatment[] = copy.items;
   const [active, setActive] = useState<(typeof categories)[number]["key"]>("all");
 
   const filtered = useMemo(() => {

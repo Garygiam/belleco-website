@@ -12,6 +12,8 @@ type Labels = {
   whatToExpect: string;
   faqs: string;
   continueExploring: string;
+  backToHome: string;
+  exploreTreatments: string;
 };
 
 type SupportingLink = {
@@ -29,7 +31,7 @@ type Props = {
   expectations: string[];
   faqs: Faq[];
   bookingHref?: string;
-  labels?: Labels;
+  labels?: Partial<Labels>;
   supportingLinks?: SupportingLink[];
   jsonLd: Array<unknown>;
 };
@@ -49,7 +51,7 @@ export function ServicePage({
   jsonLd,
 }: Props) {
   const resolvedBookingHref = bookingHref ?? "/book";
-  const resolvedLabels: Labels = labels ?? {
+  const resolvedLabels: Labels = {
     bookConsultation: "Book Consultation",
     whatsapp: "WhatsApp",
     getDirections: "Get Directions",
@@ -58,12 +60,32 @@ export function ServicePage({
     whatToExpect: "What to expect",
     faqs: "FAQs",
     continueExploring: "Continue Exploring",
+    backToHome: "Back to Home",
+    exploreTreatments: "Explore Treatments",
+    ...labels,
   };
+  const backToHomeHref = supportingLinks?.[0]?.href ?? "/en";
+  const exploreTreatmentsHref =
+    supportingLinks?.find((link) => link.href.includes("#treatments"))?.href ?? "/en#treatments";
 
   return (
     <main className="cinematic-bg cinematic-grain flex-1 bg-page">
       <section className="bg-page">
         <div className="mx-auto w-full max-w-6xl px-5 py-20 md:px-8 md:py-28">
+          <div className="mb-8 flex flex-wrap gap-3">
+            <Link
+              href={backToHomeHref}
+              className="inline-flex h-10 items-center rounded-full border border-border bg-page px-4 text-sm font-semibold text-ink shadow-sm transition hover:bg-surface"
+            >
+              {resolvedLabels.backToHome}
+            </Link>
+            <Link
+              href={exploreTreatmentsHref}
+              className="inline-flex h-10 items-center rounded-full border border-border bg-surface/70 px-4 text-sm font-semibold text-ink shadow-sm transition hover:bg-page"
+            >
+              {resolvedLabels.exploreTreatments}
+            </Link>
+          </div>
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
             {eyebrow}
           </p>

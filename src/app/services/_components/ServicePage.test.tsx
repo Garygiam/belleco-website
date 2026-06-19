@@ -3,6 +3,43 @@ import { describe, expect, it } from "vitest";
 import { ServicePage } from "@/app/services/_components/ServicePage";
 
 describe("ServicePage", () => {
+  it("shows an early return path to home and treatments", () => {
+    render(
+      <ServicePage
+        eyebrow="Acne"
+        title="Acne Treatment Kuala Lumpur"
+        description="Description"
+        bullets={["One"]}
+        suitability={["Suitability"]}
+        process={["Step 1"]}
+        expectations={["Expectation"]}
+        faqs={[{ q: "Question?", a: "Answer." }]}
+        bookingHref="/en/book"
+        labels={{
+          bookConsultation: "Book Consultation",
+          whatsapp: "WhatsApp",
+          getDirections: "Get Directions",
+          whoItsFor: "Who it’s for",
+          howItWorks: "How it works",
+          whatToExpect: "What to expect",
+          faqs: "FAQs",
+          continueExploring: "Continue Exploring",
+        }}
+        supportingLinks={[
+          { href: "/en", label: "Belléco Skin Beauté" },
+          { href: "/en#treatments", label: "Explore Treatments" },
+        ]}
+        jsonLd={[]}
+      />,
+    );
+
+    expect(screen.getByRole("link", { name: "Back to Home" })).toHaveAttribute("href", "/en");
+    expect(screen.getAllByRole("link", { name: "Explore Treatments" })[0]).toHaveAttribute(
+      "href",
+      "/en#treatments",
+    );
+  });
+
   it("renders process, outcomes, suitability, and FAQ sections with semantic headings", () => {
     render(
       <ServicePage
@@ -58,7 +95,7 @@ describe("ServicePage", () => {
       "href",
       "/en",
     );
-    expect(screen.getByRole("link", { name: "Explore Treatments" })).toHaveAttribute(
+    expect(screen.getAllByRole("link", { name: "Explore Treatments" })[0]).toHaveAttribute(
       "href",
       "/en#treatments",
     );

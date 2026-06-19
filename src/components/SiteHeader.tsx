@@ -54,9 +54,9 @@ export function SiteHeader({ locale, dictionary }: Props) {
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/book`}
-            className="hidden h-10 items-center rounded-full bg-accent px-5 text-sm font-semibold text-accent-ink shadow-lift transition hover:bg-accent-hover md:inline-flex"
+            className="book-button-pulse hidden h-10 items-center rounded-full bg-accent px-5 text-sm font-semibold text-accent-ink shadow-lift transition hover:bg-accent-hover md:inline-flex"
           >
-            {dictionary.header.cta}
+            <span className="book-button-pulse__label">{dictionary.header.cta}</span>
           </Link>
           <LanguageSwitcher
             currentLocale={locale}

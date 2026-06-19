@@ -14,6 +14,20 @@ vi.mock("next/headers", () => ({
   headers: headersMock,
 }));
 
+vi.mock("@next/third-parties/google", () => ({
+  GoogleAnalytics: ({ gaId }: { gaId: string }) => ({
+    type: "google-analytics",
+    props: { gaId },
+  }),
+}));
+
+vi.mock("@/components/GoogleAnalyticsPageView", () => ({
+  GoogleAnalyticsPageView: () => ({
+    type: "google-analytics-page-view",
+    props: {},
+  }),
+}));
+
 describe("root layout metadata", () => {
   it("configures the Belléco favicon and apple icon", async () => {
     const { metadata } = await import("@/app/layout");
@@ -39,5 +53,30 @@ describe("root layout metadata", () => {
     });
 
     expect(element.props.lang).toBe("zh");
+  });
+
+  it("loads Google Analytics globally from the root layout", async () => {
+    headersMock.mockResolvedValue(
+      new Headers([["x-belleco-locale", "en"]]),
+    );
+
+    const { default: RootLayout } = await import("@/app/layout");
+    const element = await RootLayout({
+      children: "child",
+    });
+
+    const bodyChildren = Array.isArray(element.props.children.props.children)
+      ? element.props.children.props.children
+      : [element.props.children.props.children];
+
+    expect(
+      bodyChildren.some(
+        (child: unknown) =>
+          typeof child === "object" &&
+          child !== null &&
+          "props" in child &&
+          (child as { props?: { gaId?: string } }).props?.gaId === "G-GNLBE6P3P5",
+      ),
+    ).toBe(true);
   });
 });

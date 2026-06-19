@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { GoogleAnalyticsPageView } from "@/components/GoogleAnalyticsPageView";
 import { defaultLocale, isLocale } from "@/lib/i18n";
 import { getSiteUrl } from "@/lib/seo/urls";
 
@@ -58,6 +60,8 @@ export default async function RootLayout({
     >
       <body suppressHydrationWarning className="min-h-full flex flex-col bg-page text-ink">
         {children}
+        <GoogleAnalytics gaId="G-GNLBE6P3P5" />
+        <GoogleAnalyticsPageView />
       </body>
     </html>
   );
